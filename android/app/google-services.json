@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "731349176194",
+    "project_id": "steverao",
+    "storage_bucket": "steverao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731349176194:android:bcaaaa0888ea834109099b",
+        "android_client_info": {
+          "package_name": "com.app.steverao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731349176194-e2pmjvo9n6pgjdcqbko55s8nrt1dbq2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt6ClT6fKMhYynbaX9SAon4jsZ7BMfsIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731349176194-e2pmjvo9n6pgjdcqbko55s8nrt1dbq2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
