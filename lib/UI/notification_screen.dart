@@ -42,7 +42,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           "Notification",
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: displayWidth(context) * 0.08,
+              fontSize: displayWidth(context) * 0.07,
               fontFamily: 'dmsans',
               color: AppColors().titleColor),
         ),
@@ -82,7 +82,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             notificactionlist[index].message,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: displayWidth(context) * 0.05,
+                                fontSize: displayWidth(context) * 0.045,
                                 fontFamily: 'dmsans',
                                 color: Colors.black),
                           ),
@@ -90,7 +90,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: Container(
-                            margin: EdgeInsets.only(top: displayHeight(context) * 0.02),
+                            margin: EdgeInsets.only(
+                                top: displayHeight(context) * 0.02),
                             child: Text(
                               notificactionlist[index].date,
                               style: TextStyle(

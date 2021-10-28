@@ -53,7 +53,8 @@ Widget navigationdrawer({required BuildContext context}) {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(
-                    left: displayWidth(context) * 0.04, top: displayHeight(context) * 0.02),
+                    left: displayWidth(context) * 0.04,
+                    top: displayHeight(context) * 0.02),
                 child: IconButton(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
@@ -68,7 +69,8 @@ Widget navigationdrawer({required BuildContext context}) {
               ),
               Container(
                 margin: EdgeInsets.only(
-                    left: displayWidth(context) * 0.07, top: displayHeight(context) * 0.02),
+                    left: displayWidth(context) * 0.07,
+                    top: displayHeight(context) * 0.02),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -80,7 +82,8 @@ Widget navigationdrawer({required BuildContext context}) {
                         child: InkWell(
                           child: Text(
                             "Home",
-                            style: menu_textStyle(color: AppColors().buttonColor),
+                            style:
+                                menu_textStyle(color: AppColors().buttonColor),
                           ),
                         ),
                       ),
@@ -103,8 +106,9 @@ Widget navigationdrawer({required BuildContext context}) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        IssuesPreview(title: "About us", categoryType: "about")));
+                                    builder: (context) => IssuesPreview(
+                                        title: "About us",
+                                        categoryType: "about")));
                           },
                         ),
                       ),
@@ -125,8 +129,8 @@ Widget navigationdrawer({required BuildContext context}) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        IssuesList(title: "Issues", type: 'issues')));
+                                    builder: (context) => IssuesList(
+                                        title: "Issues", type: 'issues')));
                           },
                         ),
                       ),
@@ -147,8 +151,8 @@ Widget navigationdrawer({required BuildContext context}) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        IssuesList(title: "Media", type: 'media')));
+                                    builder: (context) => IssuesList(
+                                        title: "Media", type: 'media')));
                           },
                         ),
                       ),
@@ -165,30 +169,31 @@ Widget navigationdrawer({required BuildContext context}) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => IssuesList(title: "Blog", type: 'blog')));
+                                    builder: (context) => IssuesList(
+                                        title: "Blog", type: 'blog')));
                           },
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: displayHeight(context) * 0.025,
-                        ),
-                        child: InkWell(
-                          child: Text(
-                            "Donate",
-                            style: menu_textStyle(color: Colors.black),
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => WebViewScreen(
-                                        webViewURL:
-                                            "https://www.paypal.com/donate?token=OfBW-YAPWerC_5R-v-8T5mYVpOlOfJbRCx-dWY-zskUvcRf_hO4pM6zuzUYbFDIccFSOhreVY1fYEjPj",
-                                        title: '')));
-                          },
-                        ),
-                      ),
+                      // Container(
+                      //   margin: EdgeInsets.only(
+                      //     top: displayHeight(context) * 0.025,
+                      //   ),
+                      //   child: InkWell(
+                      //     child: Text(
+                      //       "Donate",
+                      //       style: menu_textStyle(color: Colors.black),
+                      //     ),
+                      //     onTap: () {
+                      //       Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => WebViewScreen(
+                      //                   webViewURL:
+                      //                       "https://www.paypal.com/donate?token=OfBW-YAPWerC_5R-v-8T5mYVpOlOfJbRCx-dWY-zskUvcRf_hO4pM6zuzUYbFDIccFSOhreVY1fYEjPj",
+                      //                   title: '')));
+                      //     },
+                      //   ),
+                      // ),
                       Container(
                         margin: EdgeInsets.only(
                           top: displayHeight(context) * 0.025,
@@ -200,7 +205,9 @@ Widget navigationdrawer({required BuildContext context}) {
                           ),
                           onTap: () {
                             Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => ContactScreen()));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ContactScreen()));
                           },
                         ),
                       ),

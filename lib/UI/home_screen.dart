@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ScrollController _scrollController = ScrollController();
   int length = 0;
   int currentPos = 0;
-  bool isLoaded=false;
+  bool isLoaded = false;
   List<Endorsement> endorsementList = [];
   List<Endorsement> endorsements = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         endorsements.addAll(homeResponse.endorsements);
         length = endorsements.length ~/ 10;
         setState(() {
-          isLoaded=true;
+          isLoaded = true;
         });
         debugPrint("image:${homeResponse.endorsements.length}");
         debugPrint("length:${length}");
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   "STEVE",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: displayWidth(context) * 0.08,
+                      fontSize: displayWidth(context) * 0.07,
                       fontFamily: 'dmsans',
                       color: AppColors().titleColor),
                 ),
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   " RAO",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: displayWidth(context) * 0.08,
+                      fontSize: displayWidth(context) * 0.07,
                       fontFamily: 'dmsans',
                       color: Colors.red),
                 ),
@@ -131,183 +131,193 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: AppColors().bg,
           drawer: navigationdrawer(context: context),
-          body:!isLoaded?Center(child:CircularProgressIndicator() ):
-           Container(
-            margin: EdgeInsets.only(
-                top: displayHeight(context) * 0.01,
-                left: displayWidth(context) * 0.04,
-                right: displayWidth(context) * 0.04),
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  Container(
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        height: displayHeight(context) * 0.25,
-                        enlargeCenterPage: true,
-                        onPageChanged: (val, CarouselPageChangedReason) {
-                          setState(() {
-                            currentPos = val;
-                          });
-                        },
-                        autoPlay: true,
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enableInfiniteScroll: true,
-                        autoPlayAnimationDuration: Duration(milliseconds: 800),
-                        viewportFraction: 1,
-                      ),
-                      items: imageUrlList.map((item) {
-                        return Container(
-                            child: ImageSlider(context: context, url: item));
-                      }).toList(),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: displayHeight(context) * 0.01),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AnimatedSmoothIndicator(
-                            activeIndex: currentPos,
-                            count: imageUrlList.length,
-                            effect: SlideEffect(
-                                strokeWidth: 2,
-                                spacing: 10,
-                                dotWidth: displayWidth(context) * 0.04,
-                                dotHeight: displayHeight(context) * 0.003,
-                                dotColor: AppColors().grey,
-                                activeDotColor: AppColors().buttonColor),
+          body: !isLoaded
+              ? Center(child: CircularProgressIndicator())
+              : Container(
+                  margin: EdgeInsets.only(
+                      top: displayHeight(context) * 0.01,
+                      left: displayWidth(context) * 0.04,
+                      right: displayWidth(context) * 0.04),
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        Container(
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                              height: displayHeight(context) * 0.25,
+                              enlargeCenterPage: true,
+                              onPageChanged: (val, CarouselPageChangedReason) {
+                                setState(() {
+                                  currentPos = val;
+                                });
+                              },
+                              autoPlay: true,
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              enableInfiniteScroll: true,
+                              autoPlayAnimationDuration:
+                                  Duration(milliseconds: 800),
+                              viewportFraction: 1,
+                            ),
+                            items: imageUrlList.map((item) {
+                              return Container(
+                                  child:
+                                      ImageSlider(context: context, url: item));
+                            }).toList(),
                           ),
-                        ]),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Endorsements",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: displayWidth(context) * 0.05,
-                          fontFamily: 'dmsans',
-                          color: Colors.black),
-                    ),
-                  ),
-                  Container(
-                      child: ListView.builder(
-                          primary: false,
-                          shrinkWrap: true,
-                          itemCount: endorsementList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              margin:
-                                  EdgeInsets.all(displayHeight(context) * 0.01),
-                              child: Card(
-                                elevation: 2,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.all(
-                                          displayHeight(context) * 0.01),
-                                      child: Text(
-                                        endorsementList[index].title,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'dmsans',
-                                            fontSize:
-                                                displayHeight(context) * 0.024,
-                                            color: Colors.black),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.all(
-                                          displayHeight(context) * 0.01),
-                                      child: ReadMoreText(
-                                        endorsementList[index].content,
-                                        trimLines: 2,
-                                        colorClickableText: Colors.pink,
-                                        trimMode: TrimMode.Line,
-                                        lessStyle: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            decoration:
-                                                TextDecoration.underline,
-                                            fontFamily: 'dmsans',
-                                            fontSize:
-                                                displayHeight(context) * 0.02,
-                                            color: AppColors().titleColor),
-                                        trimCollapsedText: 'Show more',
-                                        trimExpandedText: 'Show less',
-                                        style: TextStyle(
-                                            fontFamily: 'dmsans',
-                                            fontSize:
-                                                displayHeight(context) * 0.024,
-                                            color: Colors.black),
-                                        moreStyle: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            decoration:
-                                                TextDecoration.underline,
-                                            fontFamily: 'dmsans',
-                                            fontSize:
-                                                displayHeight(context) * 0.02,
-                                            color: AppColors().titleColor),
-                                      ),
-                                    ),
-                                  ],
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              vertical: displayHeight(context) * 0.01),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AnimatedSmoothIndicator(
+                                  activeIndex: currentPos,
+                                  count: imageUrlList.length,
+                                  effect: SlideEffect(
+                                      strokeWidth: 2,
+                                      spacing: 10,
+                                      dotWidth: displayWidth(context) * 0.04,
+                                      dotHeight: displayHeight(context) * 0.003,
+                                      dotColor: AppColors().grey,
+                                      activeDotColor: AppColors().buttonColor),
                                 ),
-                              ),
-                            );
-                          })),
-                  Container(
-                    height: displayHeight(context) * 0.05,
-                    width: displayWidth(context),
-                    margin: EdgeInsets.symmetric(
-                        vertical: displayHeight(context) * 0.02),
-                    decoration: BoxDecoration(
-                        color: AppColors().paginationColors,
-                        borderRadius: BorderRadius.circular(7)),
-                    child: ListView.builder(
-                      primary: false,
-                      shrinkWrap: true,
-                      itemCount: length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                              int start = ((index + 1) * 10) - 10;
-                              int end = ((index + 1) * 10);
-                              endorsementList.clear();
-                              for (int i = start; i < end; i++) {
-                                endorsementList.add(endorsements[i]);
-                              }
-                              _scrollController.animateTo(180.0,
-                                  duration: Duration(milliseconds: 1000),
-                                  curve: Curves.ease);
-                            });
-                          },
-                          child: new Container(
-                            color: Colors.transparent,
-                            width: displayWidth(context) * 0.08,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: displayWidth(context) * 0.008),
-                            child: Container(
-                                color: selectedIndex == index
-                                    ? Colors.white
-                                    : Colors.transparent,
-                                padding: EdgeInsets.all(
-                                    displayHeight(context) * 0.008),
-                                child: new Text("${index + 1}")),
-                            alignment: Alignment.center,
+                              ]),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Endorsements",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: displayWidth(context) * 0.05,
+                                fontFamily: 'dmsans',
+                                color: Colors.black),
                           ),
-                        );
-                      },
-                      scrollDirection: Axis.horizontal,
+                        ),
+                        Container(
+                            child: ListView.builder(
+                                primary: false,
+                                shrinkWrap: true,
+                                itemCount: endorsementList.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    margin: EdgeInsets.all(
+                                        displayHeight(context) * 0.01),
+                                    child: Card(
+                                      elevation: 2,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.all(
+                                                displayHeight(context) * 0.01),
+                                            child: Text(
+                                              endorsementList[index].title,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'dmsans',
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.024,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.all(
+                                                displayHeight(context) * 0.01),
+                                            child: ReadMoreText(
+                                              endorsementList[index].content,
+                                              trimLines: 2,
+                                              colorClickableText: Colors.pink,
+                                              trimMode: TrimMode.Line,
+                                              lessStyle: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  fontFamily: 'dmsans',
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.02,
+                                                  color:
+                                                      AppColors().titleColor),
+                                              trimCollapsedText: 'Show more',
+                                              trimExpandedText: 'Show less',
+                                              style: TextStyle(
+                                                  fontFamily: 'dmsans',
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.024,
+                                                  color: Colors.black),
+                                              moreStyle: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  fontFamily: 'dmsans',
+                                                  fontSize:
+                                                      displayHeight(context) *
+                                                          0.02,
+                                                  color:
+                                                      AppColors().titleColor),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                })),
+                        Container(
+                          height: displayHeight(context) * 0.05,
+                          width: displayWidth(context),
+                          margin: EdgeInsets.symmetric(
+                              vertical: displayHeight(context) * 0.02),
+                          decoration: BoxDecoration(
+                              color: AppColors().paginationColors,
+                              borderRadius: BorderRadius.circular(7)),
+                          child: ListView.builder(
+                            primary: false,
+                            shrinkWrap: true,
+                            itemCount: length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = index;
+                                    int start = ((index + 1) * 10) - 10;
+                                    int end = ((index + 1) * 10);
+                                    endorsementList.clear();
+                                    for (int i = start; i < end; i++) {
+                                      endorsementList.add(endorsements[i]);
+                                    }
+                                    _scrollController.animateTo(180.0,
+                                        duration: Duration(milliseconds: 1000),
+                                        curve: Curves.ease);
+                                  });
+                                },
+                                child: new Container(
+                                  color: Colors.transparent,
+                                  width: displayWidth(context) * 0.08,
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal:
+                                          displayWidth(context) * 0.008),
+                                  child: Container(
+                                      color: selectedIndex == index
+                                          ? Colors.white
+                                          : Colors.transparent,
+                                      padding: EdgeInsets.all(
+                                          displayHeight(context) * 0.008),
+                                      child: new Text("${index + 1}")),
+                                  alignment: Alignment.center,
+                                ),
+                              );
+                            },
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          )),
+                )),
     );
   }
 }

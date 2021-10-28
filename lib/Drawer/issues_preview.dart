@@ -19,14 +19,15 @@ class IssuesPreview extends StatefulWidget {
   _IssuesPreviewState createState() => _IssuesPreviewState();
 }
 
-class _IssuesPreviewState extends State<IssuesPreview> with TickerProviderStateMixin {
+class _IssuesPreviewState extends State<IssuesPreview>
+    with TickerProviderStateMixin {
   String detailscontent = '';
   List<String> imagesList = [];
   List<String> linksList = [];
   loadDATA() async {
     debugPrint(" widget.categoryType:${widget.categoryType}");
-    DetailsResponse detailsResponse =
-        await Api().CategoriesDetailAPI(type: widget.categoryType, call: widget.title);
+    DetailsResponse detailsResponse = await Api()
+        .CategoriesDetailAPI(type: widget.categoryType, call: widget.title);
     if (detailsResponse.result == "success") {
       setState(() {
         // categoryList.clear();
@@ -53,11 +54,12 @@ class _IssuesPreviewState extends State<IssuesPreview> with TickerProviderStateM
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
+        toolbarHeight: displayHeight(context) * 0.065,
         title: Text(
           widget.title,
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: displayWidth(context) * 0.08,
+              fontSize: displayWidth(context) * 0.07,
               fontFamily: 'dmsans',
               color: AppColors().titleColor),
         ),
@@ -71,23 +73,34 @@ class _IssuesPreviewState extends State<IssuesPreview> with TickerProviderStateM
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: AppColors().bg,
-        bottom: TabBar(
-          labelColor: AppColors().titleColor,
-          unselectedLabelColor: Colors.black,
-          indicatorColor: AppColors().titleColor,
-          labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: displayWidth(context) * 0.06,
-              fontFamily: 'dmsans',
-              color: AppColors().titleColor),
-          tabs: [
-            Tab(
-              text: "Content",
-            ),
-            Tab(text: "Gallery"),
-            Tab(text: "Links "),
-          ],
-          controller: _controller,
+        bottom: PreferredSize(
+          preferredSize:
+              new Size(displayWidth(context), displayHeight(context) * 0.1),
+          child: TabBar(
+            labelColor: AppColors().titleColor,
+            unselectedLabelColor: Colors.black,
+            indicatorColor: AppColors().titleColor,
+            labelStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: displayWidth(context) * 0.055,
+                fontFamily: 'dmsans',
+                color: AppColors().titleColor),
+            tabs: [
+              Container(
+                height: displayHeight(context) * 0.1,
+                child: Tab(
+                  text: "Content",
+                ),
+              ),
+              Container(
+                  height: displayHeight(context) * 0.1,
+                  child: Tab(text: "Gallery")),
+              Container(
+                  height: displayHeight(context) * 0.1,
+                  child: Tab(text: "Links ")),
+            ],
+            controller: _controller,
+          ),
         ),
       ),
       backgroundColor: AppColors().bg,

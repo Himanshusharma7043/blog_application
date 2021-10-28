@@ -32,10 +32,12 @@ class _ContactScreenState extends State<ContactScreen> {
       // debugPrint("statement:" + loginResponse.email);
       if (loginResponse.result == "success") {
         CircularProgressIndicator();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(loginResponse.result)));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(loginResponse.result)));
         CircularProgressIndicator();
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(loginResponse.result)));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(loginResponse.result)));
       }
     }
   }
@@ -50,7 +52,7 @@ class _ContactScreenState extends State<ContactScreen> {
           "Contact",
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: displayWidth(context) * 0.08,
+              fontSize: displayWidth(context) * 0.07,
               fontFamily: 'dmsans',
               color: AppColors().titleColor),
         ),
@@ -69,7 +71,8 @@ class _ContactScreenState extends State<ContactScreen> {
       body: SingleChildScrollView(
           child: Container(
         margin: EdgeInsets.only(
-            left: displayWidth(context) * 0.04, right: displayWidth(context) * 0.04),
+            left: displayWidth(context) * 0.04,
+            right: displayWidth(context) * 0.04),
         child: Form(
           key: _formKey,
           child: Column(
@@ -87,7 +90,8 @@ class _ContactScreenState extends State<ContactScreen> {
                         ),
                         child: TextFormField(
                           style: TextStyle(
-                              fontSize: displayHeight(context) * 0.03, color: Colors.black),
+                              fontSize: displayHeight(context) * 0.03,
+                              color: Colors.black),
                           keyboardType: TextInputType.text,
                           controller: subjectController,
                           decoration: InputDecoration(
@@ -102,7 +106,8 @@ class _ContactScreenState extends State<ContactScreen> {
                             ),
                             hintText: "Subject",
                             hintStyle: TextStyle(
-                                fontSize: displayHeight(context) * 0.025, color: AppColors().grey),
+                                fontSize: displayHeight(context) * 0.025,
+                                color: AppColors().grey),
                             focusedErrorBorder: border().contactBorder,
                             errorBorder: border().contactBorder,
                             disabledBorder: border().contactBorder,
@@ -131,7 +136,8 @@ class _ContactScreenState extends State<ContactScreen> {
                         child: TextFormField(
                           maxLines: 5,
                           style: TextStyle(
-                              fontSize: displayHeight(context) * 0.03, color: Colors.black),
+                              fontSize: displayHeight(context) * 0.03,
+                              color: Colors.black),
                           keyboardType: TextInputType.text,
                           controller: messageController,
                           decoration: InputDecoration(
@@ -146,7 +152,8 @@ class _ContactScreenState extends State<ContactScreen> {
                             ),
                             hintText: "Subject",
                             hintStyle: TextStyle(
-                                fontSize: displayHeight(context) * 0.025, color: AppColors().grey),
+                                fontSize: displayHeight(context) * 0.025,
+                                color: AppColors().grey),
                             focusedErrorBorder: border().contactBorder,
                             errorBorder: border().contactBorder,
                             disabledBorder: border().contactBorder,
@@ -175,7 +182,8 @@ class _ContactScreenState extends State<ContactScreen> {
                   style: ElevatedButton.styleFrom(
                       primary: AppColors().buttonColor,
                       side: BorderSide(color: AppColors().mainColor),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30))),
                   child: Text(
                     "Send",
                     style: TextStyle(

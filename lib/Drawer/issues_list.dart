@@ -54,11 +54,12 @@ class _IssuesListState extends State<IssuesList> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
+        toolbarHeight: displayHeight(context) * 0.065,
         title: Text(
           widget.title,
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: displayWidth(context) * 0.08,
+              fontSize: displayWidth(context) * 0.07,
               fontFamily: 'dmsans',
               color: AppColors().titleColor),
         ),
